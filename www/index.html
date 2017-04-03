@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html ng-app="starter" ng-controller="myRangePageCtrl" ng-init="show()">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <link rel="manifest" href="manifest.json">
+
+    <!-- un-comment this code to enable service worker
+    <script>
+      if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(() => console.log('service worker installed'))
+          .catch(err => console.log('Error', err));
+      }
+    </script>-->
+
+    <!-- <link href="lib/ionic/css/ionic.css" rel="stylesheet"> -->
+       <link href="css/ionic.app.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="content/Chart.min.js"></script>
+    <script src="content/angular-chart.min.js"></script>
+  </head>
+  <body>
+
+    <ion-pane ng-show="mostrar">
+      <ion-header-bar class="bar-balanced">
+        <h1 class="title">Deprecia</h1>
+      </ion-header-bar>
+      <ion-content>
+          <ion-list>
+              <ion-item>
+                  <div class="row">
+                    <div class="col col-50">
+                        <label class="item item-input">
+                          <input type="number" placeholder="Vida Útil" min="1" ng-model="datos.vidautil">
+                        </label>
+                    </div>
+                    <div class="col col-50">
+                        <label class="item item-input">
+                          <input type="number" placeholder="Antigüedad" min="1" max="{{datos.vidautil}}" ng-model="datos.antiguedad" ng-change="setAntiguedad(datos.antiguedad)">
+                        </label>
+                    </div>
+                  </div>
+              </ion-item>
+              
+              
+              <ion-item class="item range range-positive" id="range1">
+                <label>0</label>
+                <input type="range" value="{{datos.rangeValue}}" ng-model="datos.rangeValue"  min="0" max="100" step="1" name="myrange">
+                <label>100%</label>
+             </ion-item>
+ 
+               <ion-item>
+                   <div class="row">
+                       <div class="col col-50">
+                        <label class="item item-input">
+                          <input type="number" placeholder="Valor Nuevo" ng-model="datos.valornuevo">
+                        </label>
+                       </div>
+                       <div class="col col-50">
+                        <label class="item item-input">
+                          <input type="number" placeholder="Valor Residual" min="1" max="{{datos.valornuevo}}" ng-model="datos.valorresidual" ng-change="setResidual(datos.valorresidual)">
+                        </label>
+                       </div>
+                   </div>
+              </ion-item>
+              
+              
+              <ion-item class="range range-positive" id="range2">
+                <label>0</label>
+                <input type="range" value="{{datos.rangeValue2}}" ng-model="datos.rangeValue2"  min="0" max="100" step="1" name="myrange2">
+                <label>100%</label>
+             </ion-item>
+              <ion-item><div class="item item-divider">Condiciones Fisicas</div></ion-item>
+             <ion-item class="range range-positive" id="range3">
+                 
+                <i class="icon ion-android-happy"></i>
+                 <input type="range" value="{{datos.rangeValue3}}" ng-model="datos.rangeValue3"  min="1" max="5" step="0.5" name="myrange3">
+                <i class="icon ion-android-sad"></i>
+                 
+             </ion-item>
+             <ion-item><p style="color:#58FA82;">{{datos.condiciones}}</p></ion-item>
+             <ion-item>
+                 <canvas id="base" class="chart-horizontal-bar" chart-data="data" chart-labels="labels" chart-colors="colors" chart-dataset-override="datasetOverride"></canvas> 
+              </ion-item>
+            
+             <ion-item>
+                 <label class="item item-input">
+                      <span class="input-label">Correo</span>
+                      <input type="email" ng-model="datos.email" placeholder="correo@dominio.cl">
+                 </label>
+             </ion-item>
+             <ion-item>
+                 <button class="button button-block button-balanced">
+                    Enviar Resultado
+                </button>
+             </ion-item>
+        </ion-list>
+        
+      </ion-content>
+    </ion-pane>
+  </body>
+</html>
