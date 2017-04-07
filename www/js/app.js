@@ -20,6 +20,7 @@ angular.module('starter', ['ionic','chart.js'])
 
 .controller('myRangePageCtrl', 
      function ($scope, $http, $stateParams, $ionicLoading, $ionicPopup) {
+        var oControl = this;
          
          $scope.mostrar = false;
          $scope.show = function() {
@@ -49,15 +50,15 @@ angular.module('starter', ['ionic','chart.js'])
             valornuevo = $scope.datos.valornuevo;
             valorresidual = $scope.datos.valorresidual;
             condiciones = $scope.datos.rangeValue3;
-            lineal = $scope.fDep_Lineal(vidautil, antiguedad, condiciones, valornuevo, valorresidual);
-            fitto = $scope.fDep_FittoCorvini(vidautil, antiguedad, condiciones, valornuevo, valorresidual);
-            rossh = $scope.fDep_RossHeidecke(vidautil, antiguedad, condiciones, valornuevo, valorresidual);
-            kuen = $scope.fDep_Kuentzle(vidautil, antiguedad, condiciones, valornuevo, valorresidual);
-            ross = $scope.fDep_Ross(vidautil, antiguedad, condiciones, valornuevo, valorresidual);
-            jans = $scope.fDep_Jans(vidautil, antiguedad, condiciones, valornuevo, valorresidual);
-            cole = $scope.fDep_Cole(vidautil, antiguedad, condiciones, valornuevo, valorresidual);
-            cons = $scope.fDep_PorcConst(vidautil, antiguedad, condiciones, valornuevo, valorresidual);
-            $scope.grafico(cons.toFixed(2),cole.toFixed(2),jans.toFixed(2), ross.toFixed(2), kuen.toFixed(2), rossh.toFixed(2), fitto.toFixed(2), lineal.toFixed(2));
+            flineal = oControl.fDep_Lineal(vidautil, antiguedad, condiciones, valornuevo, valorresidual);
+            fitto = oControl.fDep_FittoCorvini(vidautil, antiguedad, condiciones, valornuevo, valorresidual);
+            rossh = oControl.fDep_RossHeidecke(vidautil, antiguedad, condiciones, valornuevo, valorresidual);
+            kuen = oControl.fDep_Kuentzle(vidautil, antiguedad, condiciones, valornuevo, valorresidual);
+            ross = oControl.fDep_Ross(vidautil, antiguedad, condiciones, valornuevo, valorresidual);
+            jans = oControl.fDep_Jans(vidautil, antiguedad, condiciones, valornuevo, valorresidual);
+            cole = oControl.fDep_Cole(vidautil, antiguedad, condiciones, valornuevo, valorresidual);
+            cons = oControl.fDep_PorcConst(vidautil, antiguedad, condiciones, valornuevo, valorresidual);
+            oControl.grafico(cons.toFixed(2),cole.toFixed(2),jans.toFixed(2), ross.toFixed(2), kuen.toFixed(2), rossh.toFixed(2), fitto.toFixed(2), flineal.toFixed(2));
             
         }
     
@@ -161,7 +162,7 @@ angular.module('starter', ['ionic','chart.js'])
          });
          
          
-    $scope.grafico = function (cons,cole, jans, ross, kuen, rossh,fitto,lineal) {    
+    oControl.grafico = function (cons,cole, jans, ross, kuen, rossh,fitto,lineal) {
         $scope.colors = ['#ff6384', '#ff8e72'];
         $scope.labels = ['Porc. Constante ('+cons+'%)', 'Colé ('+cole+'%)', 'Jans ('+jans+'%)', 'Ross ('+ross+'%)', 'Kuentzle ('+kuen+'%)', 'Ross-Heidecke ('+rossh+'%)','Fitto-Corvini ('+fitto+'%)','Lineal ('+lineal+'%)'];
         $scope.series = ['Series A'];
@@ -170,7 +171,7 @@ angular.module('starter', ['ionic','chart.js'])
         ];
     }
 
-    $scope.fDep_PorcConst = function(p_vida_util, p_antiguedad, p_conservacion, p_valor_nuevo, p_valor_residual) {
+    oControl.fDep_PorcConst = function(p_vida_util, p_antiguedad, p_conservacion, p_valor_nuevo, p_valor_residual) {
         if (p_antiguedad == "0" || p_antiguedad === "") {
             return 0;
       }
@@ -208,7 +209,7 @@ angular.module('starter', ['ionic','chart.js'])
       return valor;
     }
 
-    $scope.fDep_Cole = function(p_vida_util, p_antiguedad, p_conservacion, p_valor_nuevo, p_valor_residual) {
+    oControl.fDep_Cole = function(p_vida_util, p_antiguedad, p_conservacion, p_valor_nuevo, p_valor_residual) {
         if (p_antiguedad == "0" || p_antiguedad === "") {
             return 0;
       }
@@ -233,7 +234,7 @@ angular.module('starter', ['ionic','chart.js'])
       return valor;
   }
 
-    $scope.fDep_Jans = function(p_vida_util, p_antiguedad, p_conservacion, p_valor_nuevo, p_valor_residual) {
+    oControl.fDep_Jans = function(p_vida_util, p_antiguedad, p_conservacion, p_valor_nuevo, p_valor_residual) {
         if (p_antiguedad == "0" || p_antiguedad === "") {
             return 0;
       }
@@ -251,7 +252,7 @@ angular.module('starter', ['ionic','chart.js'])
       return valor;
     }
     
-    $scope.fDep_Ross = function(p_vida_util, p_antiguedad, p_conservacion, p_valor_nuevo, p_valor_residual) {
+    oControl.fDep_Ross = function(p_vida_util, p_antiguedad, p_conservacion, p_valor_nuevo, p_valor_residual) {
         if (p_antiguedad == "0" || p_antiguedad === "") {
             return 0;
         }
@@ -268,7 +269,7 @@ angular.module('starter', ['ionic','chart.js'])
 
         return valor;
     }
-    $scope.fDep_Kuentzle = function(p_vida_util, p_antiguedad, p_conservacion, p_valor_nuevo, p_valor_residual) {
+    oControl.fDep_Kuentzle = function(p_vida_util, p_antiguedad, p_conservacion, p_valor_nuevo, p_valor_residual) {
         if (p_antiguedad == "0" || p_antiguedad === "") {
             return 0;
         }
@@ -287,7 +288,7 @@ angular.module('starter', ['ionic','chart.js'])
     }
 
     
-    $scope.fDep_Lineal = function (p_vida_util, p_antiguedad, p_conservacion, p_valor_nuevo, p_valor_residual) {
+    oControl.fDep_Lineal = function (p_vida_util, p_antiguedad, p_conservacion, p_valor_nuevo, p_valor_residual) {
         if (p_antiguedad == "0" || p_antiguedad === "") {
             return 0;
         }
@@ -306,7 +307,7 @@ angular.module('starter', ['ionic','chart.js'])
     }
     
     
-    $scope.fDep_FittoCorvini = function (p_vida_util, p_antiguedad, p_conservacion, p_valor_nuevo, p_valor_residual) {
+    oControl.fDep_FittoCorvini = function (p_vida_util, p_antiguedad, p_conservacion, p_valor_nuevo, p_valor_residual) {
     if (p_antiguedad == "0" || p_antiguedad === "") {
         return 0;
 	}
@@ -343,7 +344,7 @@ angular.module('starter', ['ionic','chart.js'])
 
 	return valor;
 }
-    $scope.fDep_RossHeidecke = function(p_vida_util, p_antiguedad, p_conservacion, p_valor_nuevo, p_valor_residual) {
+    oControl.fDep_RossHeidecke = function(p_vida_util, p_antiguedad, p_conservacion, p_valor_nuevo, p_valor_residual) {
     if (p_antiguedad == "0" || p_antiguedad === "") {
         return 0;
 	}
