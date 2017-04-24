@@ -1,0 +1,75 @@
+<!-- Test GIT -->
+<!DOCTYPE html>
+<html ng-app="starter" ng-controller="myRangePageCtrl as oControl" ng-init="show()">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <!--link rel="manifest" href="manifest.json" -->
+
+      <link href='https://fonts.googleapis.com/css?family=RobotoDraft:400,500,700,400italic' rel='stylesheet' type='text/css'>
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+    <link href="lib/ion-md-input/css/ion-md-input.min.css" rel="stylesheet">
+    <link href="lib/ionic-material/dist/ionic.material.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+    <script src="lib/ionic-material/dist/ionic.material.min.js"></script>
+    <script src="lib/ion-md-input/js/ion-md-input.min.js"></script>
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="content/Chart.min.js"></script>
+    <script src="content/angular-chart.min.js"></script>
+  </head>
+  <body>
+<ion-nav-view>
+<ion-view>
+    <ion-content ng-class="{expanded:$scope.isExpanded}">
+
+        <div class="hero slide-up" style="background-image: url('img/profile-bg.jpg');">
+            <div class="content">
+                <div class="avatar" style="background-image: url('img/sergio.jpeg');"></div>
+                <h3><a class="light">Sergio Riveros</a></h3>
+                <h4>@sriveros</h4>
+            </div>
+        </div>
+        <div class="tabs tabs-dark tabs-icon-top static">
+            <a ui-sref="app.activity" class="tab-item">
+                <i class="icon ion-arrow-graph-up-right"></i> Actividad
+            </a>
+            <a ui-sref="app.friends" class="tab-item">
+                <i class="icon ion-wifi"></i> Búsquedas
+            </a>
+            <a ui-sref="app.gallery" class="tab-item">
+                <i class="icon ion-ios-search-strong"></i> Buscar
+            </a>
+        </div>
+        <h4 class="content padding double-padding-x">Últimos match</h4>
+        <div class="list animate-fade-slide-in-right">
+            <a ui-sref="app.friends" class="item item-avatar item-icon-right">
+                <img src="img/wilo.jpeg">
+                <h2>Wilson</h2>
+                <p>Casa de playa | tres dormitorios</p>
+            </a>
+            <a ui-sref="app.friends" class="item item-avatar item-icon-right">
+                <img src="img/victor.jpeg">
+                <h2>Victor</h2>
+                <p>Dodge RAM 1500</p>
+            </a>
+            <a ui-sref="app.friends" class="item item-avatar item-icon-right">
+                <img src="img/pablo.jpeg">
+                <h2>Pablo</h2>
+                <p>Semillas de sesamo 1000 Kg</p>
+            </a>
+        </div>
+    </ion-content>
+</ion-view>
+
+</ion-nav-view>
+  </body>
+</html>

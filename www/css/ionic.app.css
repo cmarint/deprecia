@@ -15,6 +15,9 @@ $assertive:                       #ef473a !default;
 $royal:                           #886aea !default;
 $dark:                            #444 !default;
 */
+
+$balanced: #efefef !default;
+
 .item[disabled] {
   color: #7A8288; }
 
@@ -3342,7 +3345,7 @@ body,
   padding: 0;
   color: #C8C8C8;
   word-wrap: break-word;
-  font-size: 14px;
+  font-size: 16px;
   font-family: -apple-system;
   font-family: "-apple-system", "Helvetica Neue", "Roboto", "Segoe UI", sans-serif;
   line-height: 20px;
@@ -7417,7 +7420,7 @@ textarea {
     appearance: none;
     margin: 0;
     padding-right: 24px;
-    background-color: transparent; }
+    background-color: #ffffff; }
   .item-input .button .icon {
     -webkit-box-flex: 0;
     -webkit-flex: 0 0 24px;
