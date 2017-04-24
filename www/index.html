@@ -1,6 +1,6 @@
 <!-- Test GIT -->
 <!DOCTYPE html>
-<html ng-app="starter" ng-controller="myRangePageCtrl" ng-init="show()">
+<html ng-app="starter" ng-controller="calcController as oControl" ng-init="show()">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
@@ -8,22 +8,8 @@
 
     <link rel="manifest" href="manifest.json">
 
-    <!-- un-comment this code to enable service worker
-    <script>
-      if ('serviceWorker' in navigator) {
-        navigator.serviceWorker.register('service-worker.js')
-          .then(() => console.log('service worker installed'))
-          .catch(err => console.log('Error', err));
-      }
-    </script>-->
-
-    <!-- <link href="lib/ionic/css/ionic.css" rel="stylesheet"> -->
-       <link href="css/ionic.app.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet">
-
-    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
-    <link href="css/ionic.app.css" rel="stylesheet">
-    -->
+    <!--link href="css/bootstrap.min.css" rel="stylesheet" -->
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
 
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
@@ -33,14 +19,15 @@
 
     <!-- your app's js -->
     <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
     <script src="content/Chart.min.js"></script>
     <script src="content/angular-chart.min.js"></script>
   </head>
   <body>
-
+    <ion-view>
     <ion-pane ng-show="mostrar">
-      <ion-header-bar class="bar-balanced">
-        <h1 class="title">Deprecia</h1>
+      <ion-header-bar class="bar-ariel">
+        <h1 class="title"><p align="center">DEPRECIA</p></h1>
       </ion-header-bar>
       <ion-content>
           <ion-list>
@@ -53,7 +40,7 @@
                     </div>
                     <div class="col col-50">
                         <label class="item item-input">
-                          <input type="number" placeholder="Antigüedad" min="1" max="{{datos.vidautil}}" ng-model="datos.antiguedad" ng-change="setAntiguedad(datos.antiguedad)">
+                          <input type="number" placeholder="Antigüedad" min="1" max="{{datos.vidautil}}" ng-model="datos.antiguedad" ng-change="oControl.setAntiguedad(datos.antiguedad)">
                         </label>
                     </div>
                   </div>
@@ -62,7 +49,7 @@
               
               <ion-item class="item range range-positive" id="range1">
                 <label>0</label>
-                <input type="range" value="{{datos.rangeValue}}" ng-model="datos.rangeValue"  min="0" max="100" step="1" name="myrange">
+                <input type="range" value="{{datos.rangeValue}}" ng-model="datos.rangeValue"  min="0" max="100" step="1" name="myrange" ng-change="oControl.setRangoVidaUtil()">
                 <label>100%</label>
              </ion-item>
  
@@ -75,7 +62,7 @@
                        </div>
                        <div class="col col-50">
                         <label class="item item-input">
-                          <input type="number" placeholder="Valor Residual" min="1" max="{{datos.valornuevo}}" ng-model="datos.valorresidual" ng-change="setResidual(datos.valorresidual)">
+                          <input type="number" placeholder="Valor Residual" min="1" max="{{datos.valornuevo}}" ng-model="datos.valorresidual" ng-change="oControl.setResidual(datos.valorresidual)">
                         </label>
                        </div>
                    </div>
@@ -84,7 +71,7 @@
               
               <ion-item class="range range-positive" id="range2">
                 <label>0</label>
-                <input type="range" value="{{datos.rangeValue2}}" ng-model="datos.rangeValue2"  min="0" max="100" step="1" name="myrange2">
+                <input type="range" value="{{datos.rangeValue2}}" ng-model="datos.rangeValue2"  min="0" max="100" step="1" name="myrange2" ng-change="oControl.setRangoResidual()">
                 <label>100%</label>
              </ion-item>
               <ion-item><div class="item item-divider">Condiciones Fisicas</div></ion-item>
@@ -95,15 +82,9 @@
                 <i class="icon ion-android-sad"></i>
                  
              </ion-item>
-             <ion-item><p style="color:#58FA82;">{{datos.condiciones}}</p></ion-item>
+             <ion-item><p>{{datos.condiciones}}</p></ion-item>
              <ion-item>
                  <canvas id="base" class="chart-horizontal-bar" chart-data="data" chart-labels="labels" chart-colors="colors" chart-dataset-override="datasetOverride"></canvas> 
-              </ion-item>
-              <ion-item>
-                  <canvas id="line" class="chart chart-line" chart-data="data"
-                    chart-labels="labels" chart-series="series" chart-options="options"
-                    chart-dataset-override="datasetOverride" chart-click="onClick">
-                  </canvas>
               </ion-item>
             
              <ion-item>
@@ -113,7 +94,7 @@
                  </label>
              </ion-item>
              <ion-item>
-                 <button class="button button-block button-balanced">
+                 <button class="button button-block button-balanced" ng-click="oControl.enviarMail(datos)">
                     Enviar Resultado
                 </button>
              </ion-item>
@@ -121,5 +102,6 @@
         
       </ion-content>
     </ion-pane>
+    </ion-view>
   </body>
 </html>
